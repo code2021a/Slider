@@ -2,11 +2,20 @@
 import React, { useState } from 'react';
 import ReactSlider from 'react-slider';
 
-const SliderComponent = ({ numberOfSliders}) => {
+const SliderComponent = ({ numberOfSliders,fromSlider}) => {
   const [sliderValues, setSliderValues] = useState(Array(numberOfSliders).fill(0));
+  const [fromSlider2, setfromSlider2] = useState(Array(numberOfSliders).fill(0));
+  
 
   const handleSliderChange = (index, value) => {
     setSliderValues(prevValues => {
+      const newValues = [...prevValues];
+      newValues[index] = value;
+      return newValues;
+    });
+  };
+  const handleSliderChange2 = (index, value) => {
+    setfromSlider2(prevValues => {
       const newValues = [...prevValues];
       newValues[index] = value;
       return newValues;
@@ -18,13 +27,15 @@ const SliderComponent = ({ numberOfSliders}) => {
 
           <div style={{ width:'auto',margin: '20px'}}>
           <h2 style={{ width:'auto'}}>ReactSlider Values: {JSON.stringify(sliderValues)}</h2>
-          <div style={{ width:'fit-content',marginLeft: '1px', display: 'flex', flexDirection: 'row' ,border:'10px solid black ',borderRadius:'10px'}}>
+          <h2 style={{ width:'auto'}}>To be returned Values: {JSON.stringify(fromSlider2)}</h2>
+                    <div style={{ width:'fit-content',marginLeft: '1px', display: 'flex', flexDirection: 'row' ,border:'10px solid black ',borderRadius:'10px'}}>
         {Array.from({ length: numberOfSliders }).map((_, index) => (
         <div key={index} style={{ width:'auto',margin:'2px',border:'20px',borderBlockColor:"black" }}>
           <ReactSlider
             orientation="vertical"
             value={sliderValues[index]}
-            onChange={(value) => handleSliderChange(index, value)}
+            onChange={(value) => {handleSliderChange(index, value);fromSlider(index, value)}}
+            // onChange={(value) => handleSliderChange2(index, value)}
             min={0}
             max={10}
             thumbClassName="example-thumb"
