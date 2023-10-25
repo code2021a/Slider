@@ -1,0 +1,26 @@
+.vertical-text-button {
+    width: 30px; /* Adjust width as needed */
+    height: 100px; /* Adjust height as needed */
+    margin:1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background-color: #3498db; /* Example background color, change as needed */
+    color: #fff; /* Example text color, change as needed */
+    border: none;
+    outline: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .vertical-text-button:hover {
+    background-color: #2980b9; /* Example hover background color, change as needed */
+  }
+  
+  .char {
+    writing-mode: vertical-rl;
+    transform: rotate(270deg);
+    white-space: nowrap;
+  }
+  
